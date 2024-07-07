@@ -83,4 +83,8 @@ class HashMap
     buckets.flatten.each { |element| total += 1 unless element.nil? }
     total / 2
   end
+
+  def clear
+    self.buckets = Array.new(buckets.length)
+  end
 end
