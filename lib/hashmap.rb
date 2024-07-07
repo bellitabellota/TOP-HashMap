@@ -93,4 +93,10 @@ class HashMap
     buckets.flatten.compact.each_with_index { |element, i| keys.push(element) if i.even? }
     keys
   end
+
+  def values
+    values = []
+    buckets.flatten.compact.each_with_index { |element, i| values.push(element) if i.odd? }
+    values
+  end
 end
