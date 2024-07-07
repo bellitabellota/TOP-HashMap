@@ -6,16 +6,16 @@ Start by creating a `HashMap` class. Proceed to create the following methods:
 
 1. `#hash(key)` takes a key and produces a hash code with it. We did implement a fairly good `hash` method in the previous lesson. As a reminder:
 
-```
- def hash(key)
-   hash_code = 0
-   prime_number = 31
-      
-   key.each_char { |char| hash_code = prime_number * hash_code + char.ord }
-      
-   hash_code
- end
-```
+  ```
+  def hash(key)
+    hash_code = 0
+    prime_number = 31
+        
+    key.each_char { |char| hash_code = prime_number * hash_code + char.ord }
+        
+    hash_code
+  end
+  ```
   You are free to use that, or if you wish, you can conduct your own research. Beware this is a deep deep rabbit hole.
 
   You might find yourself confusing keys with hash codes while accessing key-value pairs later. We would like to stress that the key is what your `hash` function will take as an input. In a way, we could say that the key is important for us only inside the `hash` function. But we never access a bucket directly with the key. Instead we do so with the hash code.
