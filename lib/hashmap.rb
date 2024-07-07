@@ -15,4 +15,21 @@ class HashMap
 
     hash_code
   end
+
+  def set(key, value)
+    index = hash(key) % buckets.length
+
+    raise IndexError if index.negative? || index >= @buckets.length
+
+    if buckets[index].nil?
+      buckets[index] = []
+      buckets[index].push(key, value)
+    elsif buckets[index].include?(key)
+      inner_index = nil
+      buckets[index].each_with_index { |saved_key, index| inner_index = index if key == saved_key}
+      buckets[index][inner_index + 1] = value
+    else
+      buckets[index].push(key, value)
+    end
+  end
 end
