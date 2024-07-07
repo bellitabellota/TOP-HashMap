@@ -99,4 +99,16 @@ class HashMap
     buckets.flatten.compact.each_with_index { |element, i| values.push(element) if i.odd? }
     values
   end
+
+  def entries
+    entries = Array.new(length) { [] }
+    i = 0
+
+    length.times do
+      entries[i][0] = keys[i]
+      entries[i][1] = values[i]
+      i += 1
+    end
+    entries
+  end
 end
