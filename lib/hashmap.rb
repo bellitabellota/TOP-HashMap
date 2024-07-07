@@ -77,4 +77,10 @@ class HashMap
 
     index
   end
+
+  def length
+    total = 0
+    buckets.flatten.each { |element| total += 1 unless element.nil? }
+    total / 2
+  end
 end
