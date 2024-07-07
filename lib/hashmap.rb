@@ -17,7 +17,6 @@ class HashMap
   end
 
   def set(key, value)
-    expand_buckets
     index = calculate_index(key)
 
     if buckets[index].nil?
@@ -29,10 +28,12 @@ class HashMap
     else
       buckets[index].push(key, value)
     end
+
+    expand_buckets
   end
 
   def expand_buckets
-    if length + 1 > buckets.length * load_factor
+    if length > buckets.length * load_factor
       current_entries = entries
 
       self.buckets = Array.new(buckets.length * 2)
