@@ -27,7 +27,7 @@ You might find yourself confusing keys with hash codes while accessing key-value
 
 In the meantime, a collision is when TWO DIFFERENT keys sit inside the same bucket, because they generate the same hash code (e.g. `Carlos` and `Carla` are both hashed to `3`, so `3` becomes a location for `Carlos` AND `Carla`. However, we know that it is the collision. It means we should find a way how to resolve it — how to deal with collisions, which was mentioned in the previous lesson).
 
-- Remember to grow your buckets size when it needs to, by calculating if your bucket has reached the `load factor`. Some of the methods in this assignment that are mentioned later could be reused to help you handle that growth logic more easily. So you may want to hold onto implementing your growing functionality just for now. However, the reason why we mention it with `#set` is because it’s important to grow buckets exactly when they are being expanded.
+  - Remember to grow your buckets size when it needs to, by calculating if your bucket has reached the `load factor`. Some of the methods in this assignment that are mentioned later could be reused to help you handle that growth logic more easily. So you may want to hold onto implementing your growing functionality just for now. However, the reason why we mention it with `#set` is because it’s important to grow buckets exactly when they are being expanded.
 
 3. `#get(key)` takes one argument as a key and returns the value that is assigned to this key. If key is not found, return `nil`.
 
@@ -43,7 +43,7 @@ In the meantime, a collision is when TWO DIFFERENT keys sit inside the same buck
 
 8. `#values` returns an array containing all the values.
 
-9, `#entries` returns an array that contains each `key, value` pair. Example: `[[first_key, first_value], [second_key, second_value]]`
+9. `#entries` returns an array that contains each `key, value` pair. Example: `[[first_key, first_value], [second_key, second_value]]`
 
 Remember that our hash map does not preserve insertion order when you are retrieving your hash map’s data. It is normal and expected for keys and values to appear out of the order you inserted them in.
 
