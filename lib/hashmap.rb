@@ -23,7 +23,7 @@ class HashMap
       buckets[index] = []
       buckets[index].push(key, value)
     elsif has?(key)
-      inner_index = get_inner_index_of_value(index, key)
+      inner_index = get_inner_index_of_key(index, key)
       buckets[index][inner_index + 1] = value
     else
       buckets[index].push(key, value)
@@ -86,5 +86,11 @@ class HashMap
 
   def clear
     self.buckets = Array.new(buckets.length)
+  end
+
+  def keys
+    keys = []
+    buckets.flatten.compact.each_with_index { |element, i| keys.push(element) if i.even? }
+    keys
   end
 end
