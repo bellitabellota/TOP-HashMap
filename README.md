@@ -1,6 +1,16 @@
 # HashMap
 
 ## Assignment instructions from The Odin Project (TOP)
+Introduction
+You already know the magic behind hash maps, now it’s time to write your own implementation!
+
+Limitation
+Before we get started, we need to lay down some ground rules. Ruby’s dynamic nature of array allows us to insert and retrieve indexes that are outside our array size range. Example: if we create an array of size `16` to be our buckets size, nothing is stopping us from storing items at index `500`. This defeats the purpose we are trying to demonstrate, so we need to put some self restriction to work around this.
+
+Use the following snippet whenever you access a bucket through an index. We want to raise an error if we try to access an out of bound index:
+```
+  raise IndexError if index.negative? || index >= @buckets.length
+```
 
 Start by creating a `HashMap` class. Proceed to create the following methods:
 
