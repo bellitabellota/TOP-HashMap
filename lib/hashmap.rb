@@ -19,12 +19,10 @@ class HashMap
   def set(key, value)
     index = calculate_index(key)
 
-    raise IndexError if index.negative? || index >= @buckets.length
-
     if buckets[index].nil?
       buckets[index] = []
       buckets[index].push(key, value)
-    elsif buckets[index].include?(key)
+    elsif has?(key)
       inner_index = nil
       buckets[index].each_with_index { |saved_key, index| inner_index = index if key == saved_key}
       buckets[index][inner_index + 1] = value
@@ -36,18 +34,29 @@ class HashMap
   def get(key)
     index = calculate_index(key)
 
-    raise IndexError if index.negative? || index >= @buckets.length
-
     if buckets[index].nil?
       nil
-    elsif buckets[index].include?(key)
+    elsif has?(key)
       inner_index = nil
       buckets[index].each_with_index { |saved_key, index| inner_index = index if key == saved_key}
       buckets[index][inner_index + 1]
     end
   end
 
+  def has?(key)
+    index = calculate_index(key)
+
+    if buckets[index].nil?
+      false
+    elsif buckets[index].include?(key)
+      true
+    end
+  end
+
   def calculate_index(key)
-    hash(key) % buckets.length
+    index = hash(key) % buckets.length
+    raise IndexError if index.negative? || index >= @buckets.length
+
+    index
   end
 end
