@@ -23,8 +23,7 @@ class HashMap
       buckets[index] = []
       buckets[index].push(key, value)
     elsif has?(key)
-      inner_index = nil
-      buckets[index].each_with_index { |saved_key, index| inner_index = index if key == saved_key}
+      inner_index = get_inner_index_of_value(index, key)
       buckets[index][inner_index + 1] = value
     else
       buckets[index].push(key, value)
@@ -37,8 +36,7 @@ class HashMap
     if buckets[index].nil?
       nil
     elsif has?(key)
-      inner_index = nil
-      buckets[index].each_with_index { |saved_key, index| inner_index = index if key == saved_key}
+      inner_index = get_inner_index_of_key(index, key)
       buckets[index][inner_index + 1]
     end
   end
@@ -51,6 +49,26 @@ class HashMap
     elsif buckets[index].include?(key)
       true
     end
+  end
+
+  def remove(key)
+    index = calculate_index(key)
+
+    if has?(key)
+      inner_index = get_inner_index_of_key(index, key)
+      deleted_value = buckets[index][inner_index + 1]
+      buckets[index][inner_index] = nil
+      buckets[index][inner_index + 1] = nil
+      buckets[index] = buckets[index].compact
+      buckets[index] = nil if buckets[index] == []
+      deleted_value
+    end
+  end
+
+  def get_inner_index_of_key(index, key)
+    inner_index = nil
+    buckets[index].each_with_index { |saved_key, i| inner_index = i if key == saved_key }
+    inner_index
   end
 
   def calculate_index(key)
